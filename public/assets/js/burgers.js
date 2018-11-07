@@ -12,7 +12,7 @@ $(function() {
           type: "PUT",
           data: newState
       }).then(function() {
-          // console.log("changed devour to", true);
+          console.log("changed devour to", true);
           // Reload the page to get the updated list
           location.reload();
       });
