@@ -11,15 +11,17 @@ function printQuestionMarks(num) {
 	return arr.toString();
 }
 
-// Helper function for generating My SQL syntax
+// Helper function for SQL syntax.
 function objToSql(ob) {
-	var arr = [];
+  var arr = [];
 
-	for (var key in ob) {
-		arr.push(key + "=" + ob[key]);
-	}
+  for (var key in ob) {
+    if (Object.hasOwnProperty.call(ob, key)) {
+      arr.push(key + "=" + ob[key]);
+    }
+  }
 
-	return arr.toString();
+  return arr.toString();
 }
 
 // 3 methods selectAll, insertOne, updateOne //
@@ -33,6 +35,7 @@ var orm = {
       cb(result);
     });
   },
+
   insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
@@ -53,7 +56,7 @@ var orm = {
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
+  
   updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
@@ -71,19 +74,19 @@ var orm = {
       cb(result);
     });
   },
-  delete: function(table, condition, cb) {
-    var queryString = "DELETE FROM " + table;
-    queryString += " WHERE ";
-    queryString += condition;
+  // delete: function(table, condition, cb) {
+  //   var queryString = "DELETE FROM " + table;
+  //   queryString += " WHERE ";
+  //   queryString += condition;
 
-    connection.query(queryString, function(err, result) {
-      if (err) {
-        throw err;
-      }
+  //   connection.query(queryString, function(err, result) {
+  //     if (err) {
+  //       throw err;
+  //     }
 
-      cb(result);
-    });
-  }
+  //     cb(result);
+  //   });
+  // }
 };
 
 module.exports = orm;
