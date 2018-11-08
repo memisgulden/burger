@@ -1,50 +1,38 @@
-<main>
-  <div class="container bg">
+<h1>Eat-Da-Burger</h1>
 
-    <h1>Eat-Da-Burger!</h1>
+<h2>Burgers Not Devoured</h2>
 
-    <div class="row">
-      <div class="col">
-        <ul>
-          {{#each burgers}}
-          {{#unless this.devoured}}
-          <li>
-            {{this.id}}
-            {{this.burger_name}}
+<ul>
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{> burgers/burger-block devoured=true}}
+    {{/unless}}
+  {{/each}}
+</ul>
 
-            <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-              <button type="submit" class='burgerAvailable'> Devour It!{{this.burger_name}}</button>
-            </form>
-          </li>
-          {{/unless}}
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+<h2>Burgers Devoured</h2>
 
-    <div class="row">
-      <div class="col">
-        {{#each burgers}}
-        {{#if this.devoured}}
-        <div class='burgerEaten'>
-          <li>
-            {{this.id}}
-            {{this.burger_name}}
-        </div>
-        </li>
-        {{/if}}
-        {{/each}}
-      </div>
-    </div>
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      {{> burgers/burger-block devoured=false}}
+    {{/if}}
+  {{/each}}
+</ul>
 
-    <div class="row">
-      <div class="col">
-        <h2>Add A Burger!</h2>
-        <form action="/burgers" method="POST">
-          <input type="text" id="name" name="burger_name" placeholder="Pick A Name">
-          <button type="submit" class="addBurgerButton">Add The Burger</button>
-        </form>
-      </div>
-    </div>
+<h2>Add a Burger</h2>
+<form class="create-form">
 
-</main>
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="devoured">Devour or Delete?</label><br>
+    <input type="radio" name="devoured" value="1" checked> Devour!<br>
+    <input type="radio" name="devoured" value="0"> Delete
+  </div>
+
+  <button type="submit">Add-Da-Burger!</button>
+</form>
