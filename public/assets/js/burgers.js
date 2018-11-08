@@ -1,7 +1,7 @@
 
 
 $(function () {
-    $(".burgerAvailable").on("click", function (event) {
+    $(".change-devoured").on("click", function (event) {
         var id = $(this).data("id");
 
         var newState = {
@@ -19,7 +19,7 @@ $(function () {
         });
     });
 
-    $(".create-form").on("submit", function (event) {
+    $(".form-group").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 

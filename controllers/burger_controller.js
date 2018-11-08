@@ -15,11 +15,11 @@ router.get("/", function (req, res) {
   });
 });
 
-router.post("/burgers", function (req, res) {
+router.post("/api/burgers", function (req, res) {
   burger.insertOne([
-    "burger_name"
+    "burger_name", "devoured"
   ], [
-      req.body.burgers_name
+      req.body.burgers_name, req.body.devoured
     ], function (result) {
       console.log("post" + req.body.burgers_name);
       res.json({ name: result.name});
